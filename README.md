@@ -15,13 +15,13 @@ You will be able to:
 
 ## Stationarity recap
 
-Let's quickly rearticulate what makes a time series non-stationary. There are 2 major reasons behind non-stationarity of a time series: 
+Let's quickly re-articulate what makes a time series non-stationary. There are 2 major reasons behind non-stationarity of a time series: 
 
 >**Trend**: Varying mean over time. 
 
 >**Seasonality**: Certain variations at specific time-frames.
 
-<img src="http://radacad.com/wp-content/uploads/2017/07/trendseasonal.png" alt="Drawing" style="width: 800px;"/>
+<img src="images/trendseasonal.png" alt="Drawing" style="width: 800px;"/>
 
 In the last lab, we noticed that on average, the number of airpassengers was growing over time i.e. increase in trend. We also noticed that there was some seasonality, reflecting specific times in the year when people travel more. 
 
@@ -36,7 +36,7 @@ In this lecture, we'll cover 3 key ways to eliminate trends:
 
 ### Log Transformation
 
-One of the first tricks to enforce stationarity can be a simple log transformation to make the time series more "uniform" over time. For example, in this case we can clearly see that there is a significant positive trend, which might not be linear, or when there is a certain heteroskedasticity. 
+One of the first tricks to enforce stationarity can be a simple log transformation to make the time series more "uniform" over time. For example, in this case we can clearly see that there is a significant positive trend, which might not be linear, or when there is a certain heteroscedasticity. 
 The advantage of taking the log is that taking a transformation like this, higher values are penalized more than lower values. Alternatives for the log are the square root, cube root, etc. 
 
 Lets look at our generated sales data again, and compare the plot with the plot where we take a log transform.
@@ -70,7 +70,7 @@ plt.show()
 ```
 
 
-![png](index_files/index_4_0.png)
+![png](index_files/index_1_0.png)
 
 
 Now, use numPy's `np.log()` to get the log transform of the time series and compare the output with original time series. 
@@ -86,7 +86,7 @@ plt.show()
 ```
 
 
-![png](index_files/index_6_0.png)
+![png](index_files/index_3_0.png)
 
 
 You can notice here that this series is not stationary (yet), but taking the log did make the trend more linear, which might be a first step in the right direction. The issue is however that there seems to be more heteroscedasticity in the model now. Let's look at what happens if you take the square root of this series.
@@ -102,7 +102,7 @@ plt.show()
 ```
 
 
-![png](index_files/index_8_0.png)
+![png](index_files/index_5_0.png)
 
 
 This looks a little better, but still not ideal in this case. You'll notice that for some data the log or sqrt transform is really the way to go. For now, let's move on to the next option: subtracting the rolling mean.
@@ -127,7 +127,7 @@ plt.show(block=False)
 ```
 
 
-![png](index_files/index_13_0.png)
+![png](index_files/index_7_0.png)
 
 
 The red line shows the rolling mean. Lets subtract this from the original series. Note that since we are taking average of last 8 values, rolling mean is not defined for the first 7 values. Let's subtract these values and check for Nans for undefined values.
@@ -177,7 +177,7 @@ plt.show(block=False)
 ```
 
 
-![png](index_files/index_17_0.png)
+![png](index_files/index_11_0.png)
 
 
 This seems to be more or less stationary! Note that you can change the window length, which will affect what your eventual time series will look like. You'll experiment with this in the lab!
@@ -203,7 +203,7 @@ plt.show(block=False)
 ```
 
 
-![png](index_files/index_21_0.png)
+![png](index_files/index_13_0.png)
 
 
 
@@ -220,7 +220,7 @@ plt.show(block=False)
 ```
 
 
-![png](index_files/index_22_0.png)
+![png](index_files/index_14_0.png)
 
 
 For our sales data, subtracting the weighted mean does not seem to have a better effect than simply subtracting the rolling mean. Still, this might be better in some cases. 
@@ -244,7 +244,7 @@ plt.show(block=False)
 ```
 
 
-![png](index_files/index_26_0.png)
+![png](index_files/index_16_0.png)
 
 
 This seems to work pretty well if you want to make the series stationary!
@@ -268,11 +268,11 @@ plt.ylabel('Differenced Temperature (Degrees Celsius)', fontsize=14);
 ```
 
 
-![png](index_files/index_29_0.png)
+![png](index_files/index_18_0.png)
 
 
 
-![png](index_files/index_29_1.png)
+![png](index_files/index_18_1.png)
 
 
 ## Summary 
