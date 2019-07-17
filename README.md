@@ -21,7 +21,7 @@ Let's quickly re-articulate what makes a time series non-stationary. There are 2
 
 >**Seasonality**: Certain variations at specific time-frames.
 
-<img src="images/trendseasonal.png" alt="Drawing" style="width: 800px;"/>
+<img src="images/new_trendseasonal.png" alt="Drawing" style="width: 800px;"/>
 
 In the last lab, we noticed that on average, the number of airpassengers was growing over time i.e. increase in trend. We also noticed that there was some seasonality, reflecting specific times in the year when people travel more. 
 
