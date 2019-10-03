@@ -3,7 +3,7 @@
 
 ## Introduction
 
-Although the stationarity assumption is required in major time series modeling techniques, almost none of practical time series are stationary. In this lecture we'll discuss how you can make a time series stationary. In reality, it is almost impossible to make a series perfectly stationary, but let's try to get as close as possible!
+Although the stationarity assumption is required in major time series modeling techniques, few practical time series are stationary. In this lesson we'll discuss how you can make a time series stationary. In reality, it is almost impossible to make a series perfectly stationary, but let's try to get as close as possible!
 
 ## Objectives
 
@@ -23,7 +23,7 @@ Let's quickly re-articulate what makes a time series non-stationary. There are 2
 
 <img src="images/new_trendseasonal.png" alt="Drawing" style="width: 800px;"/>
 
-In the last lab, we noticed that on average, the number of airpassengers was growing over time i.e. increase in trend. We also noticed that there was some seasonality, reflecting specific times in the year when people travel more. 
+In the last lab, we noticed that on average, the number of air passengers was growing over time i.e. increase in trend. We also noticed that there was some seasonality, reflecting specific times in the year when people travel more. 
 
 The underlying principle is to model or estimate the trend and seasonality in the series and remove those from the series in order to get a stationary series. Statistical modeling techniques can then be implemented on these series. The final step would be to convert the modeled values into the original scale by applying trend and seasonality constraints back.
 
@@ -36,10 +36,10 @@ In this lecture, we'll cover 3 key ways to eliminate trends:
 
 ### Log Transformation
 
-One of the first tricks to enforce stationarity can be a simple log transformation to make the time series more "uniform" over time. For example, in this case we can clearly see that there is a significant positive trend, which might not be linear, or when there is a certain heteroscedasticity. 
+One of the first tricks to enforce stationarity can be a simple log transformation to make the time series more "uniform" over time. For example, in this case, we can clearly see that there is a significant positive trend, which might not be linear, or when there is a certain level of heteroscedasticity. 
 The advantage of taking the log is that taking a transformation like this, higher values are penalized more than lower values. Alternatives for the log are the square root, cube root, etc. 
 
-Lets look at our generated sales data again, and compare the plot with the plot where we take a log transform.
+Let's look at our generated sales data again and compare the plot with the plot where we take a log transform.
 
 
 ```python
@@ -73,7 +73,7 @@ plt.show()
 ![png](index_files/index_1_0.png)
 
 
-Now, use numPy's `np.log()` to get the log transform of the time series and compare the output with original time series. 
+Now, use numPy's `np.log()` to get the log transform of the time series and compare the output with the original time series. 
 
 
 ```python
@@ -130,7 +130,7 @@ plt.show(block=False)
 ![png](index_files/index_7_0.png)
 
 
-The red line shows the rolling mean. Lets subtract this from the original series. Note that since we are taking average of last 8 values, rolling mean is not defined for the first 7 values. Let's subtract these values and check for Nans for undefined values.
+The red line shows the rolling mean. Let's subtract this from the original series. Note that since we are taking the average of the last 8 values, the rolling mean is not defined for the first 7 values. Let's subtract these values and check for Nans for undefined values.
 
 
 ```python
@@ -184,9 +184,9 @@ This seems to be more or less stationary! Note that you can change the window le
 
 #### The weighted rolling mean
 
-A drawback of the rolling mean approach is that the window has to be strictly defined. In this case we can take yearly averages but in complex situations like forecasting a stock price, it may be difficult to come up with an exact number. So we take a "weighted rolling mean" (or weighted moving average, WMA for short) where more recent values are given a higher weight. There are several techniques for assigning weights. A popular one is **Exponentially Weighted Moving Average** where weights are assigned to all the previous values with an exponential decay factor.This can be implemented in Pandas with `DataFrame.ewm()` method. Details can be found [here](https://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.ewm.html).
+A drawback of the rolling mean approach is that the window has to be strictly defined. In this case, we can take yearly averages but in complex situations like forecasting a stock price, it may be difficult to come up with an exact number. So we take a "weighted rolling mean" (or weighted moving average, WMA for short) where more recent values are given a higher weight. There are several techniques for assigning weights. A popular one is **Exponentially Weighted Moving Average** where weights are assigned to all the previous values with an exponential decay factor. This can be implemented in Pandas with `DataFrame.ewm()` method. Details can be found [here](https://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.ewm.html).
 
-Note that here the parameter ‘halflife’ is used to define the amount of exponential decay. This is just an assumption here and would depend largely on the business domain. Other parameters like span and center of mass can also be used to define decay which are discussed in the link shared above.
+Note that here the parameter ‘halflife’ is used to define the amount of exponential decay. This is just an assumption here and would depend largely on the business domain. Other parameters like span and center of mass can also be used to define decay. These definitions are discussed in the link shared above.
 
 
 ```python
@@ -229,7 +229,7 @@ For our sales data, subtracting the weighted mean does not seem to have a better
 
 One of the most common methods of dealing with both trend and seasonality is differencing. In this technique, we take the difference of an observation at a particular time instant with that at the previous instant (i.e. a co-called 1-period "lag"). 
 
-This mostly works pretty well in improving stationarity. First order differencing can be done in Pandas using the `.diff()` function with periods = 1 (denoting a 1-period lag). Details on `.diff()` can be found [here](https://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.diff.html).
+This mostly works pretty well in improving stationarity. First-order differencing can be done in Pandas using the `.diff()` function with periods = 1 (denoting a 1-period lag). Details on `.diff()` can be found [here](https://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.diff.html).
 
 
 ```python
@@ -277,4 +277,4 @@ plt.ylabel('Differenced Temperature (Degrees Celsius)', fontsize=14);
 
 ## Summary 
 
-In this lab, you learned how to make time series stationary through using log transforms, rolling means and differencing. Let's move on to some practice!
+In this lab, you learned how to make time series stationary through using log transforms, rolling means, and differencing. Let's move on to some practice!
