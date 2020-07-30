@@ -302,7 +302,7 @@ Differencing is a very popular tool to remove seasonal trends from time series. 
 
 ```python
 data = pd.read_csv('min_temp.csv')
-data['Date'] = pd.to_datetime(data['Date'])
+data['Date'] = pd.to_datetime(data['Date'], format='%d/%m/%y')
 data.set_index('Date', inplace=True)
 
 data.plot(figsize=(18,6), color='blue', linewidth=1, fontsize=14)
